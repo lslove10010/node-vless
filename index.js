@@ -88,7 +88,7 @@ const server = createServer((req, res) => {
 
     // 2. 订阅路径 —— 纯 Base64（一行），兼容 Clash/V2rayNG/Nekobox/Surfboard 等所有客户端
     if (requestPath === `/${SUB_PATH}`) {
-        const vless = `vless://${UUID}@${DOMAIN}:443?encryption=none&security=tls&sni=${DOMAIN}&fp=chrome&type=ws&host=${DOMAIN}&path=%2F#${encodeURIComponent(REMARKS)}`;
+        const vless = `vless://${UUID}@www.visakorea.com:443?encryption=none&security=tls&sni=${DOMAIN}&fp=chrome&type=ws&host=${DOMAIN}&path=%2F#${encodeURIComponent(REMARKS)}`;
         const base64 = Buffer.from(vless, 'utf-8').toString('base64');
 
         res.writeHead(200, {
