@@ -14,11 +14,11 @@ RUN npm ci --only=production --silent
 COPY . .
 
 # Choreo 强制：创建 UID 在 10000-20000 范围的非 root 用户
-RUN addgroup --gid 10001 choreogroup && \
-    adduser --uid 10001 --gid 10001 --disabled-password --gecos "" choreouser
+RUN addgroup --gid 10014 choreogroup && \
+    adduser --uid 10014 --gid 10014 --disabled-password --gecos "" choreouser
 
 # 切换到非 root 用户（必须）
-USER 10001
+USER 10014
 
 # 暴露端口（建议声明，Choreo 会用 PORT 环境变量，通常 8080）
 EXPOSE 8080
