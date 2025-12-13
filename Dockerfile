@@ -11,9 +11,6 @@ RUN apk update && apk add --no-cache bash openssl curl &&\
     chmod +x index.js &&\
     npm install
 
-# Choreo 强制：创建 UID 在 10000-20000 范围的非 root 用户
-RUN addgroup --gid 10014 choreogroup && \
-    adduser --uid 10014 --gid 10014 --disabled-password --gecos "" choreouser
 
 # 切换到非 root 用户（必须）
 USER 10014
