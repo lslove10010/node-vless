@@ -1,17 +1,15 @@
 # 使用 Node 20 slim 版
-FROM node:20-slim
+FROM node:20-alpine3.20
 
 # 设置工作目录
 WORKDIR /app
 
-# 先复制 package.json（利用缓存）
-COPY package*.json ./
+COPY index.js package.json ./
 
 # 安装生产依赖（更可靠）
-RUN npm ci --only=production --silent
-
-# 复制所有代码（包括 index.js）
-COPY . .
+RUN apk update && apk add --no-cache bash openssl curl &&\
+    chmod +x index.js &&\
+    npm install
 
 # Choreo 强制：创建 UID 在 10000-20000 范围的非 root 用户
 RUN addgroup --gid 10014 choreogroup && \
@@ -24,4 +22,4 @@ USER 10014
 EXPOSE 8080
 
 # 启动命令（确保 package.json 有 "start": "node index.js"）
-CMD ["npm", "start"]
+CMD ["node", "index.js"]
