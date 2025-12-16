@@ -78,7 +78,7 @@ const server = createServer((req, res) => {
             <a href="https://${DOMAIN}:443/${SUB_PATH}" class="btn">查看订阅内容（Base64）</a> 
             ${WEB_SHELL === 'on' ? `<p class="warn">Web Shell 已开启（仅用于调试，请勿在生产环境开启）</p>` : ''}
         </div>
-        <footer>Powered with ♥ by nodejs-vless</footer>
+        <footer>Powered with ♥ by nodejs-website</footer>
     </div>
 </body>
 </html>`;
@@ -128,7 +128,7 @@ const server = createServer((req, res) => {
     res.end('NotFound');
 });
 
-// ==================== VLESS 协议解析 ====================
+// ==================== website 协议解析 ====================
 function parseHandshake(buf) {
     let offset = 0;
     const version = buf.readUInt8(offset); offset += 1;
@@ -193,7 +193,7 @@ wss.on('connection', ws => {
 
 // ==================== 启动 ====================
 server.listen(PORT, '0.0.0.0', () => {
-    console.log(`Node.js VLESS Server running`);
+    console.log(`Node.js Website Server running`);
     console.log(`- 管理页面   → https://${DOMAIN}:${PORT}/`);
     console.log(`- 订阅地址   → https://${DOMAIN}:${PORT}/${SUB_PATH}`);
     console.log(`- WebShell   → ${WEB_SHELL === 'on' ? '已开启' : '已关闭'}`);
