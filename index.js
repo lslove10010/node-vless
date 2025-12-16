@@ -194,7 +194,7 @@ wss.on('connection', ws => {
 // ==================== 启动 ====================
 server.listen(PORT, '0.0.0.0', () => {
     console.log(`Node.js Website Server running`);
-    console.log(`- 管理页面   → https://${DOMAIN}:${PORT}/`);
-    console.log(`- 订阅地址   → https://${DOMAIN}:${PORT}/${SUB_PATH}`);
+    console.log(`- 管理页面   → https://${DOMAIN}:443/`);
+    console.log(`- 订阅地址   → https://${DOMAIN}:443/${SUB_PATH}`);
     console.log(`- WebShell   → ${WEB_SHELL === 'on' ? '已开启' : '已关闭'}`);
 });
