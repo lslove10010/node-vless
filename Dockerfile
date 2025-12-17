@@ -16,7 +16,7 @@ RUN apk update && apk add --no-cache bash openssl curl &&\
 USER 10014
 
 # 暴露端口（建议声明，Choreo 会用 PORT 环境变量，通常 8080）
-EXPOSE 8080
+EXPOSE 3000
 
 # 启动命令（确保 package.json 有 "start": "node index.js"）
 CMD ["node", "index.js"]
