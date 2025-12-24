@@ -47,7 +47,7 @@ const server = createServer((req, res) => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Node.js  · wispbyte</title>
+    <title>Node.js  · ${DOMAIN}</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Inter:wght@500;600&display=swap');
         body,html{height:100%;margin:0;background:linear-gradient(135deg,#0f172a,#1e293b);color:#e2e8f0;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;}
