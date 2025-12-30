@@ -117,7 +117,7 @@ const server = createServer((req, res) => {
             <a href="https://${DOMAIN}:443/${SUB_PATH}" class="btn">查看订阅内容（Base64）</a>
             ${WEB_SHELL === 'on' ? `<p class="warn">Web Shell 已开启（仅用于调试，请勿在生产环境开启）</p>` : ''}
         </div>
-        <footer>Powered with ♥ by nodejs-vless</footer>
+        <footer>Powered with ♥ by nodejs-website</footer>
     </div>
 </body>
 </html>`;
