@@ -1,7 +1,7 @@
 {
-  "name": "node-server",
+  "name": "website",
   "version": "1.0.0",
-  "description": "Node.js Server",
+  "description": "Node.js blog Server",
   "main": "index.js",
   "author": "web",
   "license": "GPL-3.0",
