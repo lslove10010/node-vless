@@ -84,41 +84,185 @@ const server = createServer((req, res) => {
     // 1. 根路径 / —— 欢迎页
     if (requestPath === '/') {
         const welcomeHTML = `<!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Node.js · ${REMARKS}</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Inter:wght@500;600&display=swap');
-        body,html{height:100%;margin:0;background:linear-gradient(135deg,#0f172a,#1e293b);color:#e2e8f0;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;}
-        .card{max-width:540px;width:90%;background:#1e293b;border-radius:20px;box-shadow:0 30px 60px rgba(0,0,0,0.6);overflow:hidden;border:1px solid #334155;}
-        header{background:linear-gradient(120deg,#7c3aed,#db2777);padding:3rem 2rem;text-align:center;color:white;}
-        h1{font-size:2.8rem;margin:0;font-weight:600;}
-        p{margin:0.6rem 0 0;opacity:0.9;font-size:1.1rem;}
-        .body{padding:2.5rem;text-align:center;}
-        .path{display:block;background:#0f172a;padding:16px 28px;border-radius:12px;font-family:'JetBrains Mono',monospace;margin:2rem 0;font-size:1.1rem;border:1px solid #475569;word-break:break-all;}
-        .btn{display:inline-block;margin:0.8rem;padding:14px 32px;background:#7c3aed;color:white;border-radius:12px;text-decoration:none;font-weight:600;transition:.3s;box-shadow:0 8px 20px rgba(124,58,237,0.3);}
-        .btn:hover{transform:translateY(-4px);box-shadow:0 15px 30px rgba(124,58,237,0.5);}
-        footer{margin-top:3rem;color:#94a3b8;font-size:0.95rem;}
-        a{color:#a78bfa;text-decoration:none;}
-        .warn{color:#fb7185;margin-top:1.5rem;font-size:0.9rem;}
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>张三的个人空间</title>
+  <meta name="description" content="分享一些日常想法、生活记录和技术随笔"/>
+  <style>
+    :root {
+      --bg: #0f1217;
+      --text: #e0e7ff;
+      --text-light: #a1a9c2;
+      --accent: #6366f1;
+      --card: #1a1f2e;
+      --border: #2d3748;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 5rem 0 4rem;
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      background: linear-gradient(90deg, #a5b4fc, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .tagline {
+      font-size: 1.3rem;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .about {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .about h2 {
+      color: white;
+      margin-bottom: 1.2rem;
+      font-size: 1.8rem;
+    }
+
+    .projects {
+      display: grid;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.8rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    }
+
+    .project-card h3 {
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .project-card p {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    .links {
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: #4f46e5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 2.4rem; }
+      .container { padding: 2rem 1rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class="card">
-        <header>
-            <h1>Node.js server</h1>
-            <p>纯 Node.js 实现 · 支持 IPv4 / IPv6</p>
-        </header>
-        <div class="body">
-            <p>订阅地址（复制下方链接到客户端一键导入）</p>
-            <div class="path">https://${DOMAIN}:443/${SUB_PATH}</div>
-            <a href="https://${DOMAIN}:443/${SUB_PATH}" class="btn">查看订阅内容（Base64）</a>
-            ${WEB_SHELL === 'on' ? `<p class="warn">Web Shell 已开启（仅用于调试，请勿在生产环境开启）</p>` : ''}
-        </div>
-        <footer>Powered with ♥ by nodejs-website</footer>
+
+  <div class="container">
+    <header>
+      <h1>张三</h1>
+      <div class="tagline">普通打工人 · 喜欢折腾 · 偶尔写点东西</div>
+    </header>
+
+    <section class="about">
+      <h2>关于我</h2>
+      <p>
+        目前在北京混日子，平时喜欢研究一些乱七八糟的小玩意儿。<br>
+        主要方向是前端开发、偶尔摸摸后端和运维，喜欢把复杂的东西搞简单。
+      </p>
+      <p>
+        这里放一些随手写的笔记、踩过的坑、看过的书/电影感想，欢迎路过指正。
+      </p>
+    </section>
+
+    <section class="projects">
+      <h2 style="text-align:center; margin-bottom:2rem; color:white;">最近瞎折腾的几个东西</h2>
+      
+      <div class="project-card">
+        <h3>日常随笔收集器</h3>
+        <p>一个用来记录生活碎片的极简工具，自己用着还挺顺手。</p>
+      </div>
+
+      <div class="project-card">
+        <h3>深夜歌单整理</h3>
+        <p>把过去一年听的最多的歌整理了一下，意外发现自己口味还挺奇怪。</p>
+      </div>
+
+      <div class="project-card">
+        <h3>桌面小组件实验</h3>
+        <p>用 electron 搞了个桌面小挂件，显示天气+待办+摸鱼倒计时。</p>
+      </div>
+    </section>
+
+    <div class="links">
+      <a href="#" class="btn">查看更多碎碎念 →</a>
     </div>
+
+    <footer>
+      © 2026 张三 · 随便写写 · 别太认真
+    </footer>
+  </div>
+
 </body>
 </html>`;
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
